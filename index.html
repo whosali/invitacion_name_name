@@ -1,0 +1,1024 @@
+
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Isabella & Santiago - Nuestra Boda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --rose-gold: #E8B4B8;
+            --dusty-rose: #D4A5A5;
+            --champagne: #F7E7CE;
+            --ivory: #FFFFF0;
+            --sage: #9CAF88;
+        }
+
+        .font-dancing { font-family: 'Dancing Script', cursive; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(232, 180, 184, 0.9), rgba(212, 165, 165, 0.8)), 
+                        url('https://thumbs.dreamstime.com/b/elegant-wedding-invitation-background-floral-border-white-space-personalized-text-featuring-romantic-roses-369265156.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .couple-silhouette {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://as2.ftcdn.net/jpg/01/93/38/99/1000_F_193389983_UXs9j5nT7co7x7XLxNWfmLFTqXx0eEwy.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 1.5s ease-out;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .rose-gradient {
+            background: linear-gradient(135deg, var(--rose-gold), var(--dusty-rose));
+        }
+
+        .champagne-gradient {
+            background: linear-gradient(135deg, var(--champagne), var(--ivory));
+        }
+
+        .heart-decoration::before {
+            content: '♥';
+            color: var(--rose-gold);
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+
+        .section-padding {
+            padding: 4rem 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 2rem 1rem;
+            }
+        }
+
+        .music-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-hearts::before,
+        .floating-hearts::after {
+            content: '♥';
+            position: absolute;
+            color: rgba(232, 180, 184, 0.3);
+            font-size: 2rem;
+            animation: floatHearts 8s infinite linear;
+        }
+
+        .floating-hearts::before {
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-hearts::after {
+            left: 80%;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatHearts {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="scroll-smooth font-poppins">
+    <!-- Navegación -->
+    <nav class="navbar fixed top-0 z-50 glass-effect">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                    <i class="fas fa-bars text-rose-600"></i>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><a href="#inicio" class="text-rose-600">Inicio</a></li>
+                    <li><a href="#evento" class="text-rose-600">Evento</a></li>
+                    <li><a href="#rsvp" class="text-rose-600">RSVP</a></li>
+                    <li><a href="#vestimenta" class="text-rose-600">Vestimenta</a></li>
+                    <li><a href="#regalos" class="text-rose-600">Regalos</a></li>
+                    <li><a href="#ubicacion" class="text-rose-600">Ubicación</a></li>
+                    <li><a href="#contacto" class="text-rose-600">Contacto</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-ghost text-xl font-dancing text-rose-600">I & S</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="#inicio" class="text-rose-600 hover:text-rose-800">Inicio</a></li>
+                <li><a href="#evento" class="text-rose-600 hover:text-rose-800">Evento</a></li>
+                <li><a href="#rsvp" class="text-rose-600 hover:text-rose-800">RSVP</a></li>
+                <li><a href="#vestimenta" class="text-rose-600 hover:text-rose-800">Vestimenta</a></li>
+                <li><a href="#regalos" class="text-rose-600 hover:text-rose-800">Regalos</a></li>
+                <li><a href="#ubicacion" class="text-rose-600 hover:text-rose-800">Ubicación</a></li>
+                <li><a href="#contacto" class="text-rose-600 hover:text-rose-800">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <button id="musicToggle" class="btn btn-ghost btn-circle text-rose-600">
+                <i class="fas fa-music"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Audio para música de fondo -->
+    <audio id="backgroundMusic" loop>
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+    </audio>
+
+    <!-- Sección Hero/Portada -->
+    <section id="inicio" class="hero min-h-screen hero-bg relative">
+        <div class="floating-hearts"></div>
+        <div class="hero-overlay bg-opacity-20"></div>
+        <div class="hero-content text-center text-white animate-fade-in">
+            <div class="max-w-md">
+                <div class="animate-float">
+                    <i class="fas fa-heart text-6xl text-rose-300 mb-8"></i>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-dancing font-bold mb-4 text-shadow-lg">
+                    Isabella
+                </h1>
+                <div class="text-4xl font-dancing mb-4 text-rose-200">
+                    &
+                </div>
+                <h1 class="text-6xl md:text-8xl font-dancing font-bold mb-8 text-shadow-lg">
+                    Santiago
+                </h1>
+                <p class="text-xl font-playfair mb-8 text-rose-100">
+                    Nos casamos y queremos celebrarlo contigo
+                </p>
+                <div class="text-2xl font-playfair mb-8">
+                    <i class="fas fa-calendar-alt text-rose-300 mr-2"></i>
+                    15 de Junio, 2024
+                </div>
+                <a href="#evento" class="btn rose-gradient text-white border-none text-lg px-8 py-3 hover:scale-105 transition-transform">
+                    Ver Detalles
+                    <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Información del Evento -->
+    <section id="evento" class="section-padding champagne-gradient">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="text-5xl font-dancing text-rose-800 mb-4">Nuestro Gran Día</h2>
+                <div class="w-24 h-1 rose-gradient mx-auto mb-8"></div>
+                <p class="text-lg text-gray-700 font-playfair">
+                    Después de años de amor y complicidad, hemos decidido dar el siguiente paso
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Ceremonia -->
+                <div class="card bg-white shadow-xl hover:shadow-2xl transition-shadow">
+                    <div class="card-body text-center">
+                        <div class="text-4xl text-rose-600 mb-4">
+                            <i class="fas fa-church"></i>
+                        </div>
+                        <h3 class="card-title text-2xl font-playfair text-rose-800 justify-center mb-4">
+                            Ceremonia Religiosa
+                        </h3>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-calendar text-rose-600 mr-3"></i>
+                                <span class="font-medium">Sábado, 15 de Junio 2024</span>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-clock text-rose-600 mr-3"></i>
+                                <span class="font-medium">4:00 PM</span>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-rose-600 mr-3"></i>
+                                <span class="font-medium">Iglesia San José<br>Av. Principal 123, Ciudad</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recepción -->
+                <div class="card bg-white shadow-xl hover:shadow-2xl transition-shadow">
+                    <div class="card-body text-center">
+                        <div class="text-4xl text-rose-600 mb-4">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <h3 class="card-title text-2xl font-playfair text-rose-800 justify-center mb-4">
+                            Recepción
+                        </h3>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-calendar text-rose-600 mr-3"></i>
+                                <span class="font-medium">Sábado, 15 de Junio 2024</span>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-clock text-rose-600 mr-3"></i>
+                                <span class="font-medium">7:00 PM</span>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-rose-600 mr-3"></i>
+                                <span class="font-medium">Salón de Eventos "El Jardín"<br>Calle de los Rosales 456, Ciudad</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cuenta regresiva -->
+            <div class="text-center mt-16">
+                <h3 class="text-3xl font-dancing text-rose-800 mb-8">Faltan</h3>
+                <div class="grid grid-flow-col gap-5 text-center auto-cols-max justify-center">
+                    <div class="flex flex-col p-2 bg-white rounded-box text-rose-800 shadow-lg">
+                        <span class="countdown font-mono text-5xl" id="days">
+                            <span style="--value:15;"></span>
+                        </span>
+                        días
+                    </div>
+                    <div class="flex flex-col p-2 bg-white rounded-box text-rose-800 shadow-lg">
+                        <span class="countdown font-mono text-5xl" id="hours">
+                            <span style="--value:10;"></span>
+                        </span>
+                        horas
+                    </div>
+                    <div class="flex flex-col p-2 bg-white rounded-box text-rose-800 shadow-lg">
+                        <span class="countdown font-mono text-5xl" id="minutes">
+                            <span style="--value:24;"></span>
+                        </span>
+                        min
+                    </div>
+                    <div class="flex flex-col p-2 bg-white rounded-box text-rose-800 shadow-lg">
+                        <span class="countdown font-mono text-5xl" id="seconds">
+                            <span style="--value:38;"></span>
+                        </span>
+                        seg
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+	 <!-- Formulario RSVP -->
+	<section id="rsvp" class="section-padding bg-white">
+		<div class="container mx-auto max-w-4xl">
+			<div class="text-center mb-16">
+				<h2 class="text-5xl font-dancing text-rose-800 mb-4">Confirma tu Asistencia</h2>
+				<div class="w-24 h-1 rose-gradient mx-auto mb-8"></div>
+				<p class="text-lg text-gray-700 font-playfair">
+					Tu presencia es el mejor regalo que podemos recibir
+				</p>
+			</div>
+
+			<div class="card bg-base-100 shadow-xl">
+				<div class="card-body">
+					<form id="rsvpForm" class="space-y-6">
+						<div class="grid md:grid-cols-2 gap-6">
+							<div class="form-control">
+								<label class="label">
+									<span class="label-text font-medium text-rose-800">Nombre Completo *</span>
+								</label>
+								<input type="text" name="nombre" placeholder="Tu nombre completo" class="input input-bordered focus:input-primary" required>
+							</div>
+							<div class="form-control">
+								<label class="label">
+									<span class="label-text font-medium text-rose-800">Email *</span>
+								</label>
+								<input type="email" name="email" placeholder="tu@email.com" class="input input-bordered focus:input-primary" required>
+							</div>
+						</div>
+
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text font-medium text-rose-800">Teléfono</span>
+							</label>
+							<input type="tel" name="telefono" placeholder="+1 234 567 8900" class="input input-bordered focus:input-primary">
+						</div>
+
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text font-medium text-rose-800">¿Asistirás? *</span>
+							</label>
+							<div class="flex gap-4">
+								<label class="label cursor-pointer">
+									<input type="radio" name="attendance" value="Sí" class="radio radio-primary" required>
+									<span class="label-text ml-2">Sí, asistiré</span>
+								</label>
+								<label class="label cursor-pointer">
+									<input type="radio" name="attendance" value="No" class="radio radio-primary" required>
+									<span class="label-text ml-2">No podré asistir</span>
+								</label>
+							</div>
+						</div>
+
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text font-medium text-rose-800">Número de acompañantes</span>
+							</label>
+							<select name="acompanantes" class="select select-bordered focus:select-primary">
+								<option>Solo yo</option>
+								<option>1 acompañante</option>
+							</select>
+						</div>
+
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text font-medium text-rose-800">Restricciones alimentarias</span>
+							</label>
+							<textarea name="restricciones" class="textarea textarea-bordered focus:textarea-primary" placeholder="Vegetariano, vegano, alergias, etc."></textarea>
+						</div>
+
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text font-medium text-rose-800">Mensaje especial</span>
+							</label>
+							<textarea name="mensaje" class="textarea textarea-bordered focus:textarea-primary" placeholder="Déjanos un mensaje de felicitación..."></textarea>
+						</div>
+
+						<div class="form-control mt-8">
+							<button type="submit" class="btn rose-gradient text-white border-none text-lg hover:scale-105 transition-transform">
+								<i class="fas fa-heart mr-2"></i>
+								Confirmar Asistencia
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Script para enviar datos a Google Sheets -->
+	<script>
+	document.getElementById("rsvpForm").addEventListener("submit", function(e){
+	  e.preventDefault();
+
+	  const form = e.target;
+
+	  fetch("https://script.google.com/macros/s/AKfycbyHTVGIkrsfVXm2jr8V3rrsAfSOXEgi2s9saatOKSf_dOczux_SW7STt_fc7kY8hnfk/exec", {
+		method: "POST",
+		body: JSON.stringify({
+		  nombre: form.nombre.value,
+		  email: form.email.value,
+		  telefono: form.telefono.value,
+		  attendance: form.attendance.value,
+		  acompanantes: form.acompanantes.value,
+		  restricciones: form.restricciones.value,
+		  mensaje: form.mensaje.value
+		}),
+		headers: {
+		  "Content-Type": "application/json"
+		}
+	  })
+	  .then(res => res.text())
+	  .then(data => {
+		alert("💌 ¡Gracias por confirmar tu asistencia! Tu respuesta quedó registrada.");
+		form.reset();
+	  })
+	  .catch(err => alert("Ocurrió un error al enviar: " + err));
+	});
+	</script>
+
+    <!-- Código de Vestimenta -->
+    <section id="vestimenta" class="section-padding champagne-gradient">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-dancing text-rose-800 mb-4">Código de Vestimenta</h2>
+                <div class="w-24 h-1 rose-gradient mx-auto mb-8"></div>
+                <p class="text-lg text-gray-700 font-playfair">
+                    Ayúdanos a crear un ambiente elegante y armonioso
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card bg-white shadow-xl">
+                    <div class="card-body text-center">
+                        <div class="text-4xl text-rose-600 mb-4">
+                            <i class="fas fa-female"></i>
+                        </div>
+                        <h3 class="card-title text-2xl font-playfair text-rose-800 justify-center mb-4">
+                            Para Ellas
+                        </h3>
+                        <div class="text-left space-y-3 text-gray-700">
+                            <div class="heart-decoration">Vestido largo o midi elegante</div>
+                            <div class="heart-decoration">Colores sugeridos: rosa palo, champagne, lavanda</div>
+                            <div class="heart-decoration">Evitar: blanco, negro total</div>
+                            <div class="heart-decoration">Zapatos cómodos (habrá baile)</div>
+                            <div class="heart-decoration">Accesorios dorados o plateados</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-white shadow-xl">
+                    <div class="card-body text-center">
+                        <div class="text-4xl text-rose-600 mb-4">
+                            <i class="fas fa-male"></i>
+                        </div>
+                        <h3 class="card-title text-2xl font-playfair text-rose-800 justify-center mb-4">
+                            Para Ellos
+                        </h3>
+                        <div class="text-left space-y-3 text-gray-700">
+                            <div class="heart-decoration">Traje formal o semi-formal</div>
+                            <div class="heart-decoration">Colores: azul marino, gris, beige</div>
+                            <div class="heart-decoration">Camisa clara y corbata opcional</div>
+                            <div class="heart-decoration">Zapatos de vestir</div>
+                            <div class="heart-decoration">Evitar: jeans, camisetas, shorts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <div class="alert alert-info shadow-lg max-w-2xl mx-auto">
+                    <i class="fas fa-info-circle text-2xl"></i>
+                    <div>
+                        <h3 class="font-bold">Nota Importante</h3>
+                        <div class="text-xs">La ceremonia será al aire libre. Considera el clima y usa zapatos apropiados para césped.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mesa de Regalos -->
+    <section id="regalos" class="section-padding bg-white">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-dancing text-rose-800 mb-4">Mesa de Regalos</h2>
+                <div class="w-24 h-1 rose-gradient mx-auto mb-8"></div>
+                <p class="text-lg text-gray-700 font-playfair">
+                    Tu presencia es nuestro mejor regalo, pero si deseas obsequiarnos algo...
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+                    <div class="card-body text-center">
+                        <div class="text-4xl text-rose-600 mb-4">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3 class="card-title text-xl font-playfair text-rose-800 justify-center mb-4">
+                            Liverpool
+                        </h3>
+                        <p class="text-gray-600 mb-4">Mesa de regalos tradicional</p>
+                        <div class="text-sm text-gray-500 mb-4">
+                            Evento: Isabella & Santiago<br>
+                            Folio: 12345678
+                        </div>
+                        <a href="#" class="btn btn-outline btn-primary">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Ver Lista
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+                    <div class="card-body text-center">
+                        <div class="text-4xl text-rose-600 mb-4">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="card-title text-xl font-playfair text-rose-800 justify-center mb-4">
+                            Amazon
+                        </h3>
+                        <p class="text-gray-600 mb-4">Lista de deseos online</p>
+                        <div class="text-sm text-gray-500 mb-4">
+                            Lista: "Boda Isabella & Santiago"<br>
+                            Entrega directa a casa
+                        </div>
+                        <a href="#" class="btn btn-outline btn-primary">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Ver Lista
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+                    <div class="card-body text-center">
+                        <div class="text-4xl text-rose-600 mb-4">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <h3 class="card-title text-xl font-playfair text-rose-800 justify-center mb-4">
+                            Lluvia de Sobres
+                        </h3>
+                        <p class="text-gray-600 mb-4">Para nuestra luna de miel</p>
+                        <div class="text-sm text-gray-500 mb-4">
+                            Habrá un buzón especial<br>
+                            en la recepción
+                        </div>
+                        <button class="btn btn-outline btn-primary" onclick="showBankInfo()">
+                            <i class="fas fa-university mr-2"></i>
+                            Ver Datos
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para información bancaria -->
+            <dialog id="bankModal" class="modal">
+                <div class="modal-box">
+                    <h3 class="font-bold text-lg text-rose-800 mb-4">Información Bancaria</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <strong>Banco:</strong> Banco Nacional<br>
+                            <strong>Titular:</strong> Isabella García & Santiago López<br>
+                            <strong>Cuenta:</strong> 1234-5678-9012-3456<br>
+                            <strong>CLABE:</strong> 012345678901234567
+                        </div>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Por favor incluye tu nombre en la referencia del depósito</span>
+                        </div>
+                    </div>
+                    <div class="modal-action">
+                        <form method="dialog">
+                            <button class="btn">Cerrar</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section id="ubicacion" class="section-padding champagne-gradient">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-dancing text-rose-800 mb-4">¿Cómo Llegar?</h2>
+                <div class="w-24 h-1 rose-gradient mx-auto mb-8"></div>
+                <p class="text-lg text-gray-700 font-playfair">
+                    Te ayudamos a encontrar el camino hacia nuestra celebración
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Mapa -->
+                <div class="card bg-white shadow-xl">
+                    <div class="card-body p-0">
+                        <div class="h-96 bg-gray-200 rounded-t-2xl relative overflow-hidden">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.9876543210!2d-99.1234567!3d19.4321098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzU1LjYiTiA5OcKwMDcnMjQuNCJX!5e0!3m2!1ses!2smx!4v1234567890123"
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                class="rounded-t-2xl">
+                            </iframe>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-playfair text-rose-800 mb-4">Salón de Eventos "El Jardín"</h3>
+                            <p class="text-gray-600 mb-4">
+                                <i class="fas fa-map-marker-alt text-rose-600 mr-2"></i>
+                                Calle de los Rosales 456, Colonia Centro, Ciudad
+                            </p>
+                            <div class="flex gap-2">
+                                <a href="https://maps.google.com" target="_blank" class="btn btn-sm btn-outline btn-primary">
+                                    <i class="fas fa-directions mr-1"></i>
+                                    Cómo llegar
+                                </a>
+                                <button onclick="showQR()" class="btn btn-sm btn-outline btn-secondary">
+                                    <i class="fas fa-qrcode mr-1"></i>
+                                    QR Code
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información adicional -->
+                <div class="space-y-6">
+                    <div class="card bg-white shadow-xl">
+                        <div class="card-body">
+                            <h3 class="card-title text-rose-800 mb-4">
+                                <i class="fas fa-car text-rose-600 mr-2"></i>
+                                Estacionamiento
+                            </h3>
+                            <p class="text-gray-600">
+                                El salón cuenta con estacionamiento gratuito para 100 vehículos. 
+                                También hay estacionamiento público en las calles aledañas.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card bg-white shadow-xl">
+                        <div class="card-body">
+                            <h3 class="card-title text-rose-800 mb-4">
+                                <i class="fas fa-bus text-rose-600 mr-2"></i>
+                                Transporte Público
+                            </h3>
+                            <p class="text-gray-600">
+                                Líneas de autobús: 15, 23, 45<br>
+                                Metro: Estación Centro (Línea 2)<br>
+                                A 5 minutos caminando del salón
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card bg-white shadow-xl">
+                        <div class="card-body">
+                            <h3 class="card-title text-rose-800 mb-4">
+                                <i class="fas fa-hotel text-rose-600 mr-2"></i>
+                                Hoteles Cercanos
+                            </h3>
+                            <div class="space-y-2 text-gray-600">
+                                <div>• Hotel Plaza - 2 cuadras (★★★★)</div>
+                                <div>• Hotel Jardín - 3 cuadras (★★★)</div>
+                                <div>• Hotel Centro - 5 cuadras (★★★★★)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card bg-white shadow-xl">
+                        <div class="card-body">
+                            <h3 class="card-title text-rose-800 mb-4">
+                                <i class="fas fa-taxi text-rose-600 mr-2"></i>
+                                Servicios de Transporte
+                            </h3>
+                            <p class="text-gray-600">
+                                Uber, Didi y taxis disponibles en la zona.<br>
+                                Tiempo estimado desde el aeropuerto: 45 minutos
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal QR -->
+    <dialog id="qrModal" class="modal">
+        <div class="modal-box text-center">
+            <h3 class="font-bold text-lg text-rose-800 mb-4">Código QR - Ubicación</h3>
+            <div class="flex justify-center mb-4">
+                <div class="w-48 h-48 bg-gray-200 flex items-center justify-center rounded-lg">
+                    <svg width="200" height="200" viewBox="0 0 200 200">
+                        <!-- QR Code simulado -->
+                        <rect width="200" height="200" fill="white"/>
+                        <g fill="black">
+                            <rect x="0" y="0" width="20" height="20"/>
+                            <rect x="40" y="0" width="20" height="20"/>
+                            <rect x="80" y="0" width="20" height="20"/>
+                            <rect x="120" y="0" width="20" height="20"/>
+                            <rect x="160" y="0" width="20" height="20"/>
+                            <rect x="0" y="40" width="20" height="20"/>
+                            <rect x="160" y="40" width="20" height="20"/>
+                            <rect x="0" y="80" width="20" height="20"/>
+                            <rect x="40" y="80" width="20" height="20"/>
+                            <rect x="80" y="80" width="20" height="20"/>
+                            <rect x="120" y="80" width="20" height="20"/>
+                            <rect x="160" y="80" width="20" height="20"/>
+                            <!-- Más patrones del QR -->
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <p class="text-gray-600">Escanea este código para abrir la ubicación en tu teléfono</p>
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn">Cerrar</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Contacto -->
+    <section id="contacto" class="section-padding bg-white">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-dancing text-rose-800 mb-4">Contacto</h2>
+                <div class="w-24 h-1 rose-gradient mx-auto mb-8"></div>
+                <p class="text-lg text-gray-700 font-playfair">
+                    ¿Tienes alguna pregunta? No dudes en contactarnos
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body text-center">
+                        <div class="avatar mb-4">
+                            <div class="w-24 rounded-full bg-rose-100">
+                                <div class="flex items-center justify-center h-full text-4xl text-rose-600">
+                                    <i class="fas fa-female"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="card-title text-2xl font-playfair text-rose-800 justify-center mb-4">
+                            Isabella García
+                        </h3>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-phone text-rose-600 mr-3"></i>
+                                <span>+52 55 1234 5678</span>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-envelope text-rose-600 mr-3"></i>
+                                <span>isabella@email.com</span>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <i class="fab fa-whatsapp text-rose-600 mr-3"></i>
+                                <span>WhatsApp</span>
+                            </div>
+                        </div>
+                        <div class="card-actions justify-center mt-4">
+                            <a href="tel:+5255123456789" class="btn btn-sm btn-outline btn-primary">
+                                <i class="fas fa-phone mr-1"></i>
+                                Llamar
+                            </a>
+                            <a href="https://wa.me/5255123456789" class="btn btn-sm btn-outline btn-success">
+                                <i class="fab fa-whatsapp mr-1"></i>
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body text-center">
+                        <div class="avatar mb-4">
+                            <div class="w-24 rounded-full bg-blue-100">
+                                <div class="flex items-center justify-center h-full text-4xl text-blue-600">
+                                    <i class="fas fa-male"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="card-title text-2xl font-playfair text-rose-800 justify-center mb-4">
+                            Santiago López
+                        </h3>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-phone text-rose-600 mr-3"></i>
+                                <span>+52 55 9876 5432</span>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-envelope text-rose-600 mr-3"></i>
+                                <span>santiago@email.com</span>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <i class="fab fa-whatsapp text-rose-600 mr-3"></i>
+                                <span>WhatsApp</span>
+                            </div>
+                        </div>
+                        <div class="card-actions justify-center mt-4">
+                            <a href="tel:+5255987654321" class="btn btn-sm btn-outline btn-primary">
+                                <i class="fas fa-phone mr-1"></i>
+                                Llamar
+                            </a>
+                            <a href="https://wa.me/5255987654321" class="btn btn-sm btn-outline btn-success">
+                                <i class="fab fa-whatsapp mr-1"></i>
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Organizadora de bodas -->
+            <div class="text-center mt-12">
+                <div class="card bg-rose-50 shadow-lg max-w-md mx-auto">
+                    <div class="card-body text-center">
+                        <h4 class="text-xl font-playfair text-rose-800 mb-2">Wedding Planner</h4>
+                        <p class="text-gray-700 mb-2">María Fernández</p>
+                        <div class="text-sm text-gray-600 space-y-1">
+                            <div><i class="fas fa-phone text-rose-600 mr-2"></i>+52 55 5555 5555</div>
+                            <div><i class="fas fa-envelope text-rose-600 mr-2"></i>maria@weddings.com</div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">Para consultas sobre la organización del evento</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer footer-center p-10 rose-gradient text-white">
+        <div>
+            <div class="text-6xl font-dancing mb-4">I & S</div>
+            <p class="font-playfair text-lg">
+                "Dos corazones, una sola historia de amor"
+            </p>
+            <p class="text-sm opacity-75">
+                15 de Junio, 2024 • Ciudad, México
+            </p>
+        </div>
+        <div>
+            <div class="grid grid-flow-col gap-4">
+                <a href="#" class="text-2xl hover:scale-110 transition-transform">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-2xl hover:scale-110 transition-transform">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="text-2xl hover:scale-110 transition-transform">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+        <div>
+            <p class="text-xs opacity-50">
+                © 2024 Isabella & Santiago. Hecho con ♥ para nuestro día especial.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Controles de música flotantes -->
+    <div class="music-controls">
+        <button id="musicControl" class="btn btn-circle rose-gradient text-white shadow-lg hover:scale-110 transition-transform">
+            <i class="fas fa-music"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Control de música
+        const musicToggle = document.getElementById('musicToggle');
+        const musicControl = document.getElementById('musicControl');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                backgroundMusic.pause();
+                musicControl.innerHTML = '<i class="fas fa-music"></i>';
+                musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+            } else {
+                backgroundMusic.play().catch(e => {
+                    console.log('No se pudo reproducir la música automáticamente');
+                });
+                musicControl.innerHTML = '<i class="fas fa-pause"></i>';
+                musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        musicToggle.addEventListener('click', toggleMusic);
+        musicControl.addEventListener('click', toggleMusic);
+
+        // Formulario RSVP
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simular envío
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<span class="loading loading-spinner"></span> Enviando...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('¡Gracias por confirmar tu asistencia! Te contactaremos pronto.');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                e.target.reset();
+            }, 2000);
+        });
+
+        // Mostrar información bancaria
+        function showBankInfo() {
+            document.getElementById('bankModal').showModal();
+        }
+
+        // Mostrar QR
+        function showQR() {
+            document.getElementById('qrModal').showModal();
+        }
+
+        // Cuenta regresiva
+        function updateCountdown() {
+            const weddingDate = new Date('2024-06-15T16:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').style.setProperty('--value', days);
+            document.getElementById('hours').style.setProperty('--value', hours);
+            document.getElementById('minutes').style.setProperty('--value', minutes);
+            document.getElementById('seconds').style.setProperty('--value', seconds);
+
+            if (distance < 0) {
+                document.querySelector('.countdown').innerHTML = "¡Es hoy!";
+            }
+        }
+
+        // Actualizar cuenta regresiva cada segundo
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animaciones al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animaciones
+        document.querySelectorAll('.card, .hero-content').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Efecto parallax suave en el hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-bg');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            // Precargar música
+            backgroundMusic.load();
+            
+            // Mostrar mensaje de bienvenida
+            setTimeout(() => {
+                if (!sessionStorage.getItem('welcomeShown')) {
+                    alert('¡Bienvenido a nuestra invitación de boda! 💕\n\nPuedes activar la música de fondo haciendo clic en el ícono de música.');
+                    sessionStorage.setItem('welcomeShown', 'true');
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

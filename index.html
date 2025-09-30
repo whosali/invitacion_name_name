@@ -404,26 +404,36 @@
 		</div>
 	</section>
 
-<!-- Script para enviar datos a Google Sheets -->
-<script>
-document.getElementById("rsvpForm").addEventListener("submit", function(e){
-  e.preventDefault();
+		<!-- Script para enviar datos a Google Sheets -->
+		<script>
+		document.getElementById("rsvpForm").addEventListener("submit", function(e){
+		  e.preventDefault();
 
-  const form = e.target;
-  const formData = new FormData(form);
+		  const form = e.target;
 
-  fetch("https://script.google.com/macros/s/AKfycbyHTVGIkrsfVXm2jr8V3rrsAfSOXEgi2s9saatOKSf_dOczux_SW7STt_fc7kY8hnfk/exec", {
-    method: "POST",
-    mode: "no-cors", // 👈 evita el bloqueo
-    body: formData
-  })
-  .then(() => {
-    alert("💌 ¡Gracias por confirmar tu asistencia! Tu respuesta quedó registrada.");
-    form.reset();
-  })
-  .catch(err => alert("Ocurrió un error al enviar: " + err));
-});
-</script>
+		  fetch("https://script.google.com/macros/s/AKfycbyHTVGIkrsfVXm2jr8V3rrsAfSOXEgi2s9saatOKSf_dOczux_SW7STt_fc7kY8hnfk/exec", {
+			method: "POST",
+			headers: {
+			  "Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+			  nombre: form.nombre.value,
+			  email: form.email.value,
+			  telefono: form.telefono.value,
+			  attendance: form.attendance.value,
+			  acompanantes: form.acompanantes.value,
+			  restricciones: form.restricciones.value,
+			  mensaje: form.mensaje.value
+			})
+		  })
+		  .then(res => res.text())
+		  .then(data => {
+			alert("💌 ¡Gracias por confirmar tu asistencia! Tu respuesta quedó registrada.");
+			form.reset();
+		  })
+		  .catch(err => alert("Ocurrió un error al enviar: " + err));
+		});
+		</script>
 
     <!-- Código de Vestimenta -->
     <section id="vestimenta" class="section-padding champagne-gradient">

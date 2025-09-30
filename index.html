@@ -182,7 +182,7 @@
 
     <!-- Audio para música de fondo -->
     <audio id="backgroundMusic" loop>
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/mp3">
     </audio>
 
     <!-- Sección Hero/Portada -->
@@ -208,7 +208,7 @@
                 </p>
                 <div class="text-2xl font-playfair mb-8">
                     <i class="fas fa-calendar-alt text-rose-300 mr-2"></i>
-                    15 de Junio, 2024
+                    15 de Noviembre, 2025
                 </div>
                 <a href="#evento" class="btn rose-gradient text-white border-none text-lg px-8 py-3 hover:scale-105 transition-transform">
                     Ver Detalles
@@ -242,7 +242,7 @@
                         <div class="space-y-3 text-gray-700">
                             <div class="flex items-center justify-center">
                                 <i class="fas fa-calendar text-rose-600 mr-3"></i>
-                                <span class="font-medium">Sábado, 15 de Junio 2024</span>
+                                <span class="font-medium">Sábado, 15 de Noviembre 2025</span>
                             </div>
                             <div class="flex items-center justify-center">
                                 <i class="fas fa-clock text-rose-600 mr-3"></i>
@@ -268,7 +268,7 @@
                         <div class="space-y-3 text-gray-700">
                             <div class="flex items-center justify-center">
                                 <i class="fas fa-calendar text-rose-600 mr-3"></i>
-                                <span class="font-medium">Sábado, 15 de Junio 2024</span>
+                                <span class="font-medium">Sábado, 15 de Noviembre 2025</span>
                             </div>
                             <div class="flex items-center justify-center">
                                 <i class="fas fa-clock text-rose-600 mr-3"></i>
@@ -404,36 +404,26 @@
 		</div>
 	</section>
 
-	<!-- Script para enviar datos a Google Sheets -->
-	<script>
-	document.getElementById("rsvpForm").addEventListener("submit", function(e){
-	  e.preventDefault();
+<!-- Script para enviar datos a Google Sheets -->
+<script>
+document.getElementById("rsvpForm").addEventListener("submit", function(e){
+  e.preventDefault();
 
-	  const form = e.target;
+  const form = e.target;
+  const formData = new FormData(form);
 
-	  fetch("https://script.google.com/macros/s/AKfycbyHTVGIkrsfVXm2jr8V3rrsAfSOXEgi2s9saatOKSf_dOczux_SW7STt_fc7kY8hnfk/exec", {
-		method: "POST",
-		body: JSON.stringify({
-		  nombre: form.nombre.value,
-		  email: form.email.value,
-		  telefono: form.telefono.value,
-		  attendance: form.attendance.value,
-		  acompanantes: form.acompanantes.value,
-		  restricciones: form.restricciones.value,
-		  mensaje: form.mensaje.value
-		}),
-		headers: {
-		  "Content-Type": "application/json"
-		}
-	  })
-	  .then(res => res.text())
-	  .then(data => {
-		alert("💌 ¡Gracias por confirmar tu asistencia! Tu respuesta quedó registrada.");
-		form.reset();
-	  })
-	  .catch(err => alert("Ocurrió un error al enviar: " + err));
-	});
-	</script>
+  fetch("https://script.google.com/macros/s/AKfycbyHTVGIkrsfVXm2jr8V3rrsAfSOXEgi2s9saatOKSf_dOczux_SW7STt_fc7kY8hnfk/exec", {
+    method: "POST",
+    mode: "no-cors", // 👈 evita el bloqueo
+    body: formData
+  })
+  .then(() => {
+    alert("💌 ¡Gracias por confirmar tu asistencia! Tu respuesta quedó registrada.");
+    form.reset();
+  })
+  .catch(err => alert("Ocurrió un error al enviar: " + err));
+});
+</script>
 
     <!-- Código de Vestimenta -->
     <section id="vestimenta" class="section-padding champagne-gradient">
@@ -506,47 +496,6 @@
                     Tu presencia es nuestro mejor regalo, pero si deseas obsequiarnos algo...
                 </p>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
-                    <div class="card-body text-center">
-                        <div class="text-4xl text-rose-600 mb-4">
-                            <i class="fas fa-store"></i>
-                        </div>
-                        <h3 class="card-title text-xl font-playfair text-rose-800 justify-center mb-4">
-                            Liverpool
-                        </h3>
-                        <p class="text-gray-600 mb-4">Mesa de regalos tradicional</p>
-                        <div class="text-sm text-gray-500 mb-4">
-                            Evento: Isabella & Santiago<br>
-                            Folio: 12345678
-                        </div>
-                        <a href="#" class="btn btn-outline btn-primary">
-                            <i class="fas fa-external-link-alt mr-2"></i>
-                            Ver Lista
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
-                    <div class="card-body text-center">
-                        <div class="text-4xl text-rose-600 mb-4">
-                            <i class="fas fa-home"></i>
-                        </div>
-                        <h3 class="card-title text-xl font-playfair text-rose-800 justify-center mb-4">
-                            Amazon
-                        </h3>
-                        <p class="text-gray-600 mb-4">Lista de deseos online</p>
-                        <div class="text-sm text-gray-500 mb-4">
-                            Lista: "Boda Isabella & Santiago"<br>
-                            Entrega directa a casa
-                        </div>
-                        <a href="#" class="btn btn-outline btn-primary">
-                            <i class="fas fa-external-link-alt mr-2"></i>
-                            Ver Lista
-                        </a>
-                    </div>
-                </div>
 
                 <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
                     <div class="card-body text-center">
@@ -854,7 +803,7 @@
                 "Dos corazones, una sola historia de amor"
             </p>
             <p class="text-sm opacity-75">
-                15 de Junio, 2024 • Ciudad, México
+                15 de Noviembre, 2025 • Ciudad, México
             </p>
         </div>
         <div>
@@ -872,7 +821,7 @@
         </div>
         <div>
             <p class="text-xs opacity-50">
-                © 2024 Isabella & Santiago. Hecho con ♥ para nuestro día especial.
+                © 2025 Isabella & Santiago. Hecho con ♥ para nuestro día especial.
             </p>
         </div>
     </footer>
@@ -941,7 +890,7 @@
 
         // Cuenta regresiva
         function updateCountdown() {
-            const weddingDate = new Date('2024-06-15T16:00:00').getTime();
+            const weddingDate = new Date('2025-11-15T16:00:00').getTime();
             const now = new Date().getTime();
             const distance = weddingDate - now;
 

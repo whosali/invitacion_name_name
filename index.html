@@ -413,23 +413,27 @@
 		  const submitBtn = form.querySelector('button[type="submit"]');
 		  const originalText = submitBtn.innerHTML;
 		  
-		  // Mostrar estado de carga
 		  submitBtn.innerHTML = '<span class="loading loading-spinner"></span> Enviando...';
 		  submitBtn.disabled = true;
 
 		  try {
-			// Recopilar datos del formulario
+			// Obtener el valor del radio button seleccionado
+			const attendanceRadio = form.querySelector('input[name="attendance"]:checked');
+			const attendanceValue = attendanceRadio ? attendanceRadio.value : '';
+
+			// Recopilar datos del formulario de forma más robusta
 			const formData = {
-			  nombre: form.nombre.value,
-			  email: form.email.value,
-			  telefono: form.telefono.value,
-			  attendance: form.attendance.value,
-			  acompanantes: form.acompanantes.value,
-			  restricciones: form.restricciones.value,
-			  mensaje: form.mensaje.value
+			  nombre: form.nombre.value || '',
+			  email: form.email.value || '',
+			  telefono: form.telefono.value || '',
+			  attendance: attendanceValue,
+			  acompanantes: form.acompanantes.value || '',
+			  restricciones: form.restricciones.value || '',
+			  mensaje: form.mensaje.value || ''
 			};
 
-			console.log('Enviando datos:', formData);
+			// Debug: mostrar datos en consola
+			console.log('Datos a enviar:', formData);
 
 			const response = await fetch("https://script.google.com/macros/s/AKfycbyHTVGIkrsfVXm2jr8V3rrsAfSOXEgi2s9saatOKSf_dOczux_SW7STt_fc7kY8hnfk/exec", {
 			  method: "POST",
@@ -437,22 +441,20 @@
 				"Content-Type": "application/json",
 			  },
 			  body: JSON.stringify(formData),
-			  mode: 'no-cors' // Importante para evitar problemas de CORS
+			  mode: 'no-cors'
 			});
 
-			// Con mode: 'no-cors', no podemos leer la respuesta, pero si llega aquí es que se envió
 			alert("💌 ¡Gracias por confirmar tu asistencia! Tu respuesta ha sido registrada.");
 			form.reset();
 			
 		  } catch (error) {
 			console.error('Error al enviar:', error);
-			alert("❌ Ocurrió un error al enviar tu respuesta. Por favor, intenta nuevamente o contáctanos directamente.");
+			alert("❌ Ocurrió un error al enviar tu respuesta. Por favor, intenta nuevamente.");
 		  } finally {
-			// Restaurar botón
 			submitBtn.innerHTML = originalText;
 			submitBtn.disabled = false;
 		  }
-		});	
+		});
 		</script>
 
     <!-- Código de Vestimenta -->
